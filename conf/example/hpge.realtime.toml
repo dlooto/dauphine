@@ -1,0 +1,93 @@
+
+[main]
+name = "hpge.realtime"
+triggers = ["every-minute 10", "every-minute 20", "every-minute 30", "every-minute 45", "every-minute 55"]
+
+#[logger.me]
+#path="/Users/healer/logs/hpge/{$month}"
+#filename="hpge-{$date}.log"
+
+
+[action.main]
+type="mysql_exec"
+mysqlconnection="mysqlconnection"
+sql = "select * from hpge_rec where time>from_unixtime({$today}) and status=0 order by time asc limit 1;"
+return = "result_set"
+next = "upload"
+exit_at = "len({@result_set}) == 0"
+
+
+[action.upload]
+type = "http_post_file"
+param0 = "{@result_set.0.Path}"
+url="http://127.0.0.1:1024/d/upload/10?fileType=hpge&sid={@result_set.0.Sid}&fileName={@result_set.0.Path|filename}"
+return = "post_result"
+content_type = "json"
+next = "transform"
+
+
+[action.transform]
+type="resultset_to_form"
+key_value_attributes = [
+	["fileLink", "{@post_result.data.fileLink}"],
+    ["dataTime", "{@result_set.@i.Time|unixtime}"],
+    ["sid", "{@result_set.@i.Sid}"],
+    ["fileName", "{@post_result.data.fileName}"]
+    ]
+param0 = "result_set"
+return = "form"
+next = "commit"
+
+
+[action.commit]
+type = "http_post"
+param0 = "form"
+next = "update"
+url="http://127.0.0.1:1024/d/send/10"
+
+
+# 更新数据库状态
+[action.update]
+type="mysql_exec"
+mysqlconnection="mysqlconnection"
+sql = "update hpge_rec set Status=0 where Id={@result_set.0.Id};"
+return = "update_result"
+next = "get_nuclides"
+
+
+[action.get_nuclides]
+type="mysql_exec"
+mysqlconnection="mysqlconnection"
+sql = "select * from hpge_nuc_rec where Sid='{@result_set.0.Sid}';"
+return = "nuclides_result"
+next="transform2"
+exit_at = "len({@nuclides_result}) == 0 or ('{@result_set.0.Path}'.endswith('spe'))"
+
+[action.transform2]
+type="resultset_to_form"
+key_value_attributes = [
+	["nuclide", "{@nuclides_result.@i.Nuclide}"],
+    ["activity", "{@nuclides_result.@i.Activity}"],
+    ["sid", "{@result_set.0.Sid}"],
+    ["dataTime", "0"],
+    ]
+param0 = "nuclides_result"
+return = "form2"
+next = "send_nuclides"
+
+
+[action.send_nuclides]
+type = "http_post"
+param0 = "form2"
+next = ""
+url="http://{$host}:1024/d/send/11"
+
+
+
+
+
+
+
+
+
+
