@@ -1,0 +1,39 @@
+
+
+[main]
+name = "weather.history"
+
+# 每分钟尝试获取一次历史数据命令
+triggers = ["every-minute 11"]
+require = ["weather.sub.toml"]
+
+[vars]
+logger = "me"
+
+[logger.me]
+filename="weather-history-{$date}.log"
+path="D:/scada/logs/weather/{$month}"
+
+
+# action.main 是一个执行序列的第一个action
+[action.main]
+type = "http_get"
+url = "http://{$host}:1024/d/cmd/fetch/history/{$weather_device_id}"
+return = "lost_data"
+content_type = "json"
+next = "selectlost"
+logto = "{@@logger}"
+exit_at = "{@lost_data.status} != 0"
+
+[action.selectlost]
+type = "mysql_exec"
+mysqlconnection="mysqlconnection"
+# TODO: 优化UNIX_TIMESTAMP, 现在用不到Time字段的索引了
+sql = "select * from weather_rec where UNIX_TIMESTAMP(time) in ({@lost_data.data.timePoints|stringify|join});"
+next = "transform"
+return = "result_set"
+#exit_at = "len({@result_set}) == 0"
+
+
+
+

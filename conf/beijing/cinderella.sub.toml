@@ -1,0 +1,26 @@
+
+
+[action.transform]
+type = "resultset_to_form"
+key_value_attributes = [
+    ["pressureDiff", "{@result_set.@i.PressureDiff}"],
+    ["pressure", "{@result_set.@i.Pressure}"],
+    ["temperature", "{@result_set.@i.Temperature}"],
+    ["flowPerHour", "{@result_set.@i.FlowPerHour}"],
+    ["flow", "{@result_set.@i.Flow}"],
+    ["workTime", "{@result_set.@i.WorkTime}"],
+    ["beginTime", "{@result_set.@i.BeginTime|unixtime}"],
+    ["barcode", "{@result_set.@i.barcode}"],
+    ["sid", "{@result_set.@i.Sid}"],
+    ["dataTime", "{@result_set.@i.Time|unixtime}"],
+    ]
+param0 = "result_set"
+return = "form"
+logto = "{@@logger}"
+next = "post"
+
+[action.post]
+type = "http_post"
+url = "http://{$host}:1024/d/send/{$cinderella_device_id}"
+param0 = "form"
+next = ""
