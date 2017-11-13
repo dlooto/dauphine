@@ -3,16 +3,11 @@
 [action.transform]
 type = "resultset_to_form"
 key_value_attributes = [
-    ["pressureDiff", "{@result_set.@i.PressureDiff}"],
-    ["pressure", "{@result_set.@i.Pressure}"],
+    ["doserate", "{@result_set.@i.Doserate}"],
+    ["high_volt", "{@result_set.@i.Highvoltage}"],
+    ["battery", "{@result_set.@i.Battery}"],
     ["temperature", "{@result_set.@i.Temperature}"],
-    ["flowPerHour", "{@result_set.@i.FlowPerHour}"],
-    ["flow", "{@result_set.@i.Flow}"],
-    ["workTime", "{@result_set.@i.WorkTime}"],
-    ["beginTime", "{@result_set.@i.BeginTime|unixtime}"],
-    ["barcode", "{@result_set.@i.barcode}"],
-    ["sid", "{@result_set.@i.Sid}"],
-    ["dataTime", "{@result_set.@i.Time|unixtime}"],
+    ["dataTime", "{@result_set.@i.Time|unixtime}"]
     ]
 param0 = "result_set"
 return = "form"
