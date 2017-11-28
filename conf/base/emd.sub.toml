@@ -1,0 +1,21 @@
+
+
+[action.transform]
+type = "resultset_to_form"
+key_value_attributes = [
+    ["doserate", "{@result_set.@i.Doserate}"],
+    ["high_volt", "{@result_set.@i.Highvoltage}"],
+    ["battery", "{@result_set.@i.Battery}"],
+    ["temperature", "{@result_set.@i.Temperature}"],
+    ["dataTime", "{@result_set.@i.Time|unixtime}"]
+    ]
+param0 = "result_set"
+return = "form"
+logto = "{@@logger}"
+next = "post"
+
+[action.post]
+type = "http_post"
+url = "http://{$host}:1024/d/send/{$hpic_device_id}"
+param0 = "form"
+next = ""
