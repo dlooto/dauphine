@@ -1,2 +1,2 @@
 
-import=["hpic.realtime.toml", "hpic.sub.toml", "global.toml"]
+import=["emd.realtime.toml", "emd.sub.toml", "global.toml"]
