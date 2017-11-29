@@ -4,8 +4,8 @@
 type = "resultset_to_form"
 key_value_attributes = [
     ["electric", "{@result_set.@i.EF}"],
-    ["tempreture", "{@result_set.@i.Temp}"],
-    ["humity", "{@result_set.@i.Hum}"],
+    ["temperature", "{@result_set.@i.Temp}"],
+    ["humidity", "{@result_set.@i.Hum}"],
     ["dataTime", "{@result_set.@i.datetime|unixtime}"]
     ]
 param0 = "result_set"
