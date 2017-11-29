@@ -18,7 +18,7 @@ port=6379
 
 [logger.global]
 filename="abc.log"
-path="D:/Users/cloverdc003/log/"
+path="C:/Users/cloverdc003/log/"
 
 
 # Global variables!
