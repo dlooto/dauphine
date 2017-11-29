@@ -8,7 +8,7 @@ triggers = ["every-minute 05", "every-minute 35"]
 require = ["emd.sub.toml"]
 
 [vars]
-offset_seconds = 35
+offset_seconds = 65
 logger = "me"
 
 [logger.me]
