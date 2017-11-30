@@ -3,12 +3,12 @@
 name = "emd.realtime"
 
 # 每个30秒, 00秒(归一化时间)后的5秒尝试发送数据
-triggers = ["every-minute 05", "every-minute 35"]
+triggers = ["every-minute 05", "every-minute 25", "every-minute 45"]
 
 require = ["emd.sub.toml"]
 
 [vars]
-offset_seconds = 65
+offset_seconds = 20
 logger = "me"
 
 [logger.me]
