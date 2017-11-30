@@ -12,8 +12,8 @@ offset_seconds = 20
 logger = "me"
 
 [logger.me]
-#path="C:/Users/cloverdc003/log/emd/{$month}"
-path="/Users/healer/logs/emd/{$month}"
+path="C:/Users/cloverdc003/log/emd/{$month}"
+# path="/Users/healer/logs/emd/{$month}"
 filename="emd-{$date}.log"
 
 
