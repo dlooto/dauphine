@@ -9,7 +9,7 @@ triggers = ["every-day 00:24:04"]
 # action.main 是一个执行序列的第一个action
 [action.main]
 type = "http_get"
-url = "http://{$host}:1024/d/cmd/send/history/{$hpic_device_id}?date=yesterday"
+url = "http://{$host}:1024/d/cmd/send/history/{$em_device_id}?date=yesterday"
 return = "lost_data"
 content_type = "json"
 next = ""

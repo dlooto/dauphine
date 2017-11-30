@@ -16,6 +16,6 @@ next = "post"
 
 [action.post]
 type = "http_post"
-url = "http://{$host}:1024/d/send/{$hpic_device_id}"
+url = "http://{$host}:1024/d/send/{$em_device_id}"
 param0 = "form"
 next = ""
