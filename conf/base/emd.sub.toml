@@ -3,11 +3,10 @@
 [action.transform]
 type = "resultset_to_form"
 key_value_attributes = [
-    ["doserate", "{@result_set.@i.Doserate}"],
-    ["high_volt", "{@result_set.@i.Highvoltage}"],
-    ["battery", "{@result_set.@i.Battery}"],
-    ["temperature", "{@result_set.@i.Temperature}"],
-    ["dataTime", "{@result_set.@i.Time|unixtime}"]
+    ["electric", "{@result_set.@i.EF}"],
+    ["temperature", "{@result_set.@i.Temp}"],
+    ["humidity", "{@result_set.@i.Hum}"],
+    ["dataTime", "{@result_set.@i.datetime|unixtime}"]
     ]
 param0 = "result_set"
 return = "form"

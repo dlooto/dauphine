@@ -7,7 +7,7 @@ host="localhost"
 port=3306
 user="root"
 passwd="root"
-database="scada"
+database="shanghai"
 charset="utf8"
 
 
@@ -18,7 +18,9 @@ port=6379
 
 [logger.global]
 filename="abc.log"
-path="C:/Users/logs"
+
+#path="C:/Users/cloverdc003/log/"
+path="/Users/healer/logs"
 
 
 # Global variables!
