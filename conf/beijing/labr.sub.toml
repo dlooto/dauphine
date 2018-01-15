@@ -1,0 +1,27 @@
+
+
+[action.transform]
+type = "resultset_to_form"
+key_value_attributes = [
+    ["energyPosition", "{@result_set.@i.EnergyFromPosition}"],
+    ["nuclideFound", "{@result_set.@i.NuclideFound}"],
+    ["highVoltage", "{@result_set.@i.HighVoltage}"],
+    ["temperature", "{@result_set.@i.Temperature}"],
+    ["doseRate", "{@result_set.@i.DoseRate}"],
+    ["channelData", "{@result_set.@i.ChannelData}"],
+    ["coefficients", "{@result_set.@i.Coefficients}"],
+    ["startTime","{@result_set.@i.StartTime|unixtime}"],
+    ["endTime", "{@result_set.@i.EndTime|unixtime}"],
+    ["dataTime", "{@result_set.@i.Time|unixtime}"]
+    ]
+    
+param0 = "result_set"
+return = "form"
+logto = "{@@logger}"
+next = "post"
+
+[action.post]
+type = "http_post"
+url = "http://{$host}:1024/d/send/{$labr_device_id}"
+param0 = "form"
+next = ""
