@@ -7,7 +7,7 @@ key_value_attributes = [
     ["nuclideFound", "{@result_set.@i.NuclideFound}"],
     ["highVoltage", "{@result_set.@i.HighVoltage}"],
     ["temperature", "{@result_set.@i.Temperature}"],
-    ["doseRate", "{@result_set.@i.DoseRate}"],
+    ["doserate", "{@result_set.@i.DoseRate}"],
     ["channelData", "{@result_set.@i.ChannelData}"],
     ["coefficients", "{@result_set.@i.Coefficients}"],
     ["startTime","{@result_set.@i.StartTime|unixtime}"],
