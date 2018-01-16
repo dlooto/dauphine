@@ -44,8 +44,11 @@ type="resultset_to_form"
 key_value_attributes = [
     ["nuclide", "{@nuclides_result.@i.Nuclide}"],
     ["activity", "{@nuclides_result.@i.Activity}"],
-    ["sid", "{@result_set.0.Sid}"],
-    ["dataTime", "{@result_set.0.Time|unixtime}"]
+    ["indication", "{@result_set.@i.Indication}"],
+    ["doserate", "{@result_set.@i.DoseRate}"],
+    ["channel", "{@result_set.@i.Channel}"],
+    ["energy", "{@result_set.@i.Energy}"],
+    ["dataTime", "{@result_set.@i.Time|unixtime}"]
     ]
 param0 = "nuclides_result"
 return = "form2"
