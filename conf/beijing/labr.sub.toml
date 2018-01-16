@@ -24,4 +24,44 @@ next = "post"
 type = "http_post"
 url = "http://{$host}:1024/d/send/{$labr_device_id}"
 param0 = "form"
+next = "get_nuclides"
+
+
+
+[action.get_nuclides]
+type="mysql_exec"
+mysqlconnection="mysqlconnection"
+sql = "select * from labrnuclide_rec where Time='{@result_set.0.Time}';"
+return = "nuclides_result"
+next="transform2"
+logto="me"
+exit_at = "(len({@nuclides_result}) == 0)"
+
+
+
+[action.transform2]
+type="resultset_to_form"
+key_value_attributes = [
+    ["nuclide", "{@nuclides_result.@i.Nuclide}"],
+    ["activity", "{@nuclides_result.@i.Activity}"],
+    ["sid", "{@result_set.0.Sid}"],
+    ["dataTime", "{@result_set.0.Time|unixtime}"]
+    ]
+param0 = "nuclides_result"
+return = "form2"
+next = "send_nuclides"
+logto="me"
+
+
+[action.send_nuclides]
+type = "http_post"
+param0 = "form2"
 next = ""
+logto="me"
+url="http://{$host}:1024/d/send/{$labr_nuc_device_id}"
+
+
+
+
+
+
