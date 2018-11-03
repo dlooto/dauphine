@@ -12,7 +12,7 @@ logger = "me"
 
 [logger.me]
 filename="hpic-history-{$date}.log"
-path="C:/scada/logs/hpic/{$month}"
+path="D:/scada/logs/hpic/{$month}"
 
 
 # action.main 是一个执行序列的第一个action

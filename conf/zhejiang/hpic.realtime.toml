@@ -12,7 +12,7 @@ offset_seconds = 35
 logger = "me"
 
 [logger.me]
-path="C:/scada/logs/hpic/{$month}"
+path="D:/scada/logs/hpic/{$month}"
 filename="hpic-{$date}.log"
 
 

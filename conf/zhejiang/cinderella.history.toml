@@ -12,7 +12,7 @@ logger = "me"
 
 [logger.me]
 filename="cinderella-history-{$date}.log"
-path="C:/scada/logs/cinderella/{$month}"
+path="D:/scada/logs/cinderella/{$month}"
 
 
 # action.main 是一个执行序列的第一个action
