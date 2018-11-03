@@ -1,24 +1,24 @@
 
 
 [main]
-name = "hpic.history"
+name = "bai9850.history"
 
 # 每分钟尝试获取一次历史数据命令
 triggers = ["every-minute 11", "every-minute 32"]
-require = ["hpic.sub.toml"]
+require = ["bai9850.sub.toml"]
 
 [vars]
 logger = "me"
 
 [logger.me]
-filename="hpic-history-{$date}.log"
-path="C:/scada/logs/hpic/{$month}"
+filename="bai9850-history-{$date}.log"
+path="C:/scada/logs/bai9850/{$month}"
 
 
 # action.main 是一个执行序列的第一个action
 [action.main]
 type = "http_get"
-url = "http://{$host}:1024/d/cmd/fetch/history/{$hpic_device_id}"
+url = "http://{$host}:1024/d/cmd/fetch/history/{$bai9850_device_id}"
 return = "lost_data"
 content_type = "json"
 next = "selectlost"
@@ -29,7 +29,7 @@ exit_at = "{@lost_data.status} != 0"
 type = "mysql_exec"
 mysqlconnection="mysqlconnection"
 # TODO: 优化UNIX_TIMESTAMP, 现在用不到Time字段的索引了
-sql = "select * from hpic_rec where UNIX_TIMESTAMP(time) in ({@lost_data.data.timePoints|stringify|join});"
+sql = "select * from bai9850_rec where UNIX_TIMESTAMP(time) in ({@lost_data.data.timePoints|stringify|join});"
 next = "transform"
 return = "result_set"
 #exit_at = "len({@result_set}) == 0"

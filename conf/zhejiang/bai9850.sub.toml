@@ -4,9 +4,12 @@
 type = "resultset_to_form"
 key_value_attributes = [
     ["doserate", "{@result_set.@i.Doserate}"],
-    ["high_volt", "{@result_set.@i.Highvoltage}"],
-    ["battery", "{@result_set.@i.Battery}"],
-    ["temperature", "{@result_set.@i.Temperature}"],
+    ["alphaactivity", "{@result_set.@i.Alphaactivity}"],
+    ["betaactivity", "{@result_set.@i.Betaactivity}"],
+    ["alpha", "{@result_set.@i.Alpha}"],
+    ["beta", "{@result_set.@i.Beta}"],
+    ["i131activity", "{@result_set.@i.i131activity}"],
+    ["i131", "{@result_set.@i.i131}"],
     ["dataTime", "{@result_set.@i.Time|unixtime}"]
     ]
 param0 = "result_set"
@@ -16,6 +19,6 @@ next = "post"
 
 [action.post]
 type = "http_post"
-url = "http://{$host}:1024/d/send/{$hpic_device_id}"
+url = "http://{$host}:1024/d/send/{$bai9850_device_id}"
 param0 = "form"
 next = ""
