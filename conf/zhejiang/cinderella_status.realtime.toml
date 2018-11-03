@@ -11,7 +11,7 @@ offset_seconds = 60
 logger = "me"
 
 [logger.me]
-path="D:/scada/logs/cinderella/{$month}"
+path="C:/scada/logs/cinderella/{$month}"
 filename="cinderella-status-{$date}.log"
 
 
