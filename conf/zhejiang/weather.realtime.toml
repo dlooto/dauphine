@@ -13,7 +13,7 @@ logger = "me"
 
 [logger.me]
 filename="weather-{$date}.log"
-path="D:/scada/logs/weather/{$month}"
+path="C:/scada/logs/weather/{$month}"
 
 
 # action.main 是一个执行序列的第一个action
