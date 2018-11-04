@@ -36,3 +36,4 @@ hpge_path = "/Users/healer/Projects/privates/dauphine/examples"
 hpic_device_id=22
 weather_device_id=27
 bai9850_device_id=28
+env_device_id=29
