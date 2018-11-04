@@ -3,11 +3,11 @@
 [action.transform]
 type = "resultset_to_form"
 key_value_attributes = [
-    ["doserate", "{@result_set.@i.Doserate}"],
-    ["alphaactivity", "{@result_set.@i.Alphaactivity}"],
-    ["betaactivity", "{@result_set.@i.Betaactivity}"],
-    ["alpha", "{@result_set.@i.Alpha}"],
-    ["beta", "{@result_set.@i.Beta}"],
+    ["doserate", "{@result_set.@i.doserate}"],
+    ["alphaactivity", "{@result_set.@i.alphaactivity}"],
+    ["betaactivity", "{@result_set.@i.betaactivity}"],
+    ["alpha", "{@result_set.@i.alpha}"],
+    ["beta", "{@result_set.@i.beta}"],
     ["i131activity", "{@result_set.@i.i131activity}"],
     ["i131", "{@result_set.@i.i131}"],
     ["dataTime", "{@result_set.@i.Time|unixtime}"]
