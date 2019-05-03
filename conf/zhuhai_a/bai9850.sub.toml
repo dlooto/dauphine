@@ -10,7 +10,7 @@ key_value_attributes = [
     ["beta", "{@result_set.@i.beta}"],
     ["i131activity", "{@result_set.@i.i131activity}"],
     ["i131", "{@result_set.@i.i131}"],
-    ["dataTime", "{@result_set.@i.Time|unixtime}"]
+    ["dataTime", "{@result_set.@i.time|unixtime}"]
     ]
 param0 = "result_set"
 return = "form"
