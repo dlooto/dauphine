@@ -29,7 +29,7 @@ exit_at = "{@lost_data.status} != 0"
 type = "mysql_exec"
 mysqlconnection="mysqlconnection"
 # TODO: 优化UNIX_TIMESTAMP, 现在用不到Time字段的索引了
-sql = "select * from new131_rec where UNIX_TIMESTAMP(time) in ({@lost_data.data.timePoints|stringify|join});"
+sql = "select * from hpic_rec where UNIX_TIMESTAMP(time) in ({@lost_data.data.timePoints|stringify|join});"
 next = "transform"
 return = "result_set"
 #exit_at = "len({@result_set}) == 0"

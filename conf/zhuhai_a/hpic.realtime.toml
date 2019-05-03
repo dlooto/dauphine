@@ -20,7 +20,7 @@ filename="hpic-{$date}.log"
 [action.main]
 type = "mysql_exec"
 mysqlconnection="mysqlconnection"
-sql = "select * from new131_rec where time=from_unixtime({@@trigger_time} - {@@offset_seconds});"
+sql = "select * from hpic_rec where time=from_unixtime({@@trigger_time} - {@@offset_seconds});"
 next = "transform"
 return = "result_set"
 exit_at = "len({@result_set}) == 0"
