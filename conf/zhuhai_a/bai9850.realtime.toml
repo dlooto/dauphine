@@ -12,7 +12,7 @@ offset_seconds = 35
 logger = "me"
 
 [logger.me]
-path="C:/scada/logs/bai9850/{$month}"
+path="d:/scada/logs/bai9850/{$month}"
 filename="bai9850-{$date}.log"
 
 
