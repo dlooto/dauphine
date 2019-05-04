@@ -3,14 +3,12 @@
 [action.transform]
 type = "resultset_to_form"
 key_value_attributes = [
-    ["doserate", "{@result_set.@i.doserate}"],
-    ["alphaactivity", "{@result_set.@i.alphaactivity}"],
-    ["betaactivity", "{@result_set.@i.betaactivity}"],
-    ["alpha", "{@result_set.@i.alpha}"],
-    ["beta", "{@result_set.@i.beta}"],
-    ["i131activity", "{@result_set.@i.i131activity}"],
-    ["i131", "{@result_set.@i.i131}"],
-    ["dataTime", "{@result_set.@i.Time|unixtime}"]
+    ["gammalong", "{@result_set.@i.gammalong}"],
+    ["gammacps", "{@result_set.@i.gammacps}"],
+    ["emissionlong", "{@result_set.@i.emissionlong}"],
+    ["emissioncps", "{@result_set.@i.emissioncps}"],
+    ["betacps", "{@result_set.@i.betacps}"],
+    ["dataTime", "{@result_set.@i.time|unixtime}"]
     ]
 param0 = "result_set"
 return = "form"
@@ -19,6 +17,6 @@ next = "post"
 
 [action.post]
 type = "http_post"
-url = "http://{$host}:1024/d/send/{$bai9850_device_id}"
+url = "http://{$host}:1024/d/send/{$bai9125_device_id}"
 param0 = "form"
 next = ""

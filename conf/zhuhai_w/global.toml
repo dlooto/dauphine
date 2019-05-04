@@ -18,22 +18,12 @@ port=6379
 
 [logger.global]
 filename="abc.log"
-path="C:/scada/logs"
+path="C:/nc-scada/logs"
 
 
 # Global variables!
 [vars]
 host="47.92.125.133"
 print_exception = 1
-# SN:BJ55
-cinderella_device_id=23
-cinderella_status_device_id=24
-# SN:HPGE003
-hpge_device_id=25
-hpge_nuc_device_id=26
-hpge_path = "/Users/healer/Projects/privates/dauphine/examples"
 # SN:HPIC0001
-hpic_device_id=22
-weather_device_id=27
-bai9850_device_id=28
-env_device_id=29
+bai9125_device_id=50
