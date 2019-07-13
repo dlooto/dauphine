@@ -1,0 +1,20 @@
+
+
+[main]
+name = "weather.integrity"
+
+# 每天凌晨进行昨日数据上传自检
+triggers = ["every-day 00:14:40"]
+
+# action.main 是一个执行序列的第一个action
+[action.main]
+type = "http_get"
+url = "http://{$host}:1024/d/cmd/send/history/{$weather_device_id}?date=yesterday"
+return = "lost_data"
+content_type = "json"
+next = ""
+
+
+
+
+
