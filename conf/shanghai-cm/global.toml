@@ -25,9 +25,9 @@ path="D:/scada/logs"
 [vars]
 host="45.32.113.2"
 print_exception = 1
-cinderella_device_id=2
-cinderella_status_device_id=3
-weather_device_id=4
-hpge_device_id=5
-hpge_nuc_device_id=6
+cinderella_device_id=54
+cinderella_status_device_id=55
+weather_device_id=58
+hpge_device_id=56
+hpge_nuc_device_id=57
 hpge_path = "/Users/healer/Projects/privates/dauphine/examples"
