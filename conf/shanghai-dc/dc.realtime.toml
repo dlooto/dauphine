@@ -1,0 +1,32 @@
+
+[main]
+name = "dc.realtime"
+
+# 每个30秒, 00秒(归一化时间)后的5秒尝试发送数据
+triggers = ["every-minute 05", "every-minute 35"]
+
+require = ["dc.sub.toml"]
+
+[vars]
+offset_seconds = 35
+logger = "me"
+
+[logger.me]
+filename="dc-{$date}.log"
+path="c:/scada/logs/dc/{$month}"
+
+
+# action.main 是一个执行序列的第一个action
+[action.main]
+type = "mysql_exec"
+mysqlconnection="mysqlconnection"
+sql = "select * from dianci where datetime=from_unixtime({@@trigger_time} - {@@offset_seconds});"
+next = "transform"
+return = "result_set"
+exit_at = "len({@result_set}) == 0"
+logto = "{@@logger}"
+loglevel = 1
+
+
+
+
