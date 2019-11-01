@@ -8,7 +8,8 @@ triggers = ["every-minute 05", "every-minute 35"]
 require = ["dc.sub.toml"]
 
 [vars]
-offset_seconds = 35
+offset_seconds1 = 5
+offset_seconds2 = 35
 logger = "me"
 
 [logger.me]
@@ -20,7 +21,7 @@ path="c:/scada/logs/dc/{$month}"
 [action.main]
 type = "mysql_exec"
 mysqlconnection="mysqlconnection"
-sql = "select * from dianci where datetime=from_unixtime({@@trigger_time} - {@@offset_seconds});"
+sql = "select * from dianci where datetime >= from_unixtime({@@trigger_time} - {@@offset_seconds2}) and datetime < from_unixtime({@@trigger_time} - {@@offset_seconds1});"
 next = "transform"
 return = "result_set"
 exit_at = "len({@result_set}) == 0"
