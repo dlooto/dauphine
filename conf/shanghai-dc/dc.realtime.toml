@@ -8,8 +8,8 @@ triggers = ["every-minute 05", "every-minute 35"]
 require = ["dc.sub.toml"]
 
 [vars]
-offset_seconds1 = 5
-offset_seconds2 = 35
+offset_seconds1 = 35
+offset_seconds2 = 65
 logger = "me"
 
 [logger.me]
