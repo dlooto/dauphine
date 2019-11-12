@@ -1,0 +1,32 @@
+
+[main]
+name = "hpic.realtime"
+
+# 每个30秒, 00秒(归一化时间)后的5秒尝试发送数据
+triggers = ["every-minute 05", "every-minute 35"]
+
+require = ["hpic.sub.toml"]
+
+[vars]
+offset_seconds = 35
+logger = "me"
+
+[logger.me]
+path="d:/scada/logs/hpic/{$month}"
+filename="hpic-{$date}.log"
+
+
+# action.main 是一个执行序列的第一个action
+[action.main]
+type = "mysql_exec"
+mysqlconnection="mysqlconnection"
+sql = "select * from hpic_rec where time=from_unixtime({@@trigger_time} - {@@offset_seconds});"
+next = "transform"
+return = "result_set"
+exit_at = "len({@result_set}) == 0"
+logto = "{@@logger}"
+loglevel = 1
+
+
+
+

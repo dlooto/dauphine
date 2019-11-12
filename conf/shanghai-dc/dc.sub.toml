@@ -1,0 +1,21 @@
+
+
+[action.transform]
+type = "resultset_to_form"
+key_value_attributes = [
+    ["humidity", "{@result_set.@i.Hum}"],
+    ["temperature", "{@result_set.@i.Temp}"],
+    ["electric", "{@result_set.@i.EF}"],
+    ["dataTime", "{@result_set.@i.datetime|unixtime}"]
+    ]
+    
+param0 = "result_set"
+return = "form"
+logto = "{@@logger}"
+next = "post"
+
+[action.post]
+type = "http_post"
+url = "http://{$host}:1024/d/send/{$dc_device_id}"
+param0 = "form"
+next = ""

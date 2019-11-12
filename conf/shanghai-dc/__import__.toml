@@ -1,0 +1,4 @@
+
+
+comment="自动站"
+exclude = ["cinderella.*", "cinderella.*","weather.*","weather.hi*",]

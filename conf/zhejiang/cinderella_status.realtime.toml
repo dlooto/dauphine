@@ -1,0 +1,51 @@
+
+[main]
+name = "cinderella.status"
+
+# 每个30秒, 00秒(归一化时间)后的5秒尝试发送数据
+triggers = ["every-minute 00"]
+
+
+[vars]
+offset_seconds = 60
+logger = "me"
+
+[logger.me]
+path="C:/scada/logs/cinderella/{$month}"
+filename="cinderella-status-{$date}.log"
+
+
+# action.main 是一个执行序列的第一个action
+[action.main]
+type = "mysql_exec"
+mysqlconnection="mysqlconnection"
+sql = "select * from cinderellastatus_rec where time>from_unixtime({@@trigger_time} - {@@offset_seconds});"
+next = "transform"
+return = "result_set"
+exit_at = "len({@result_set}) == 0"
+logto = "{@@logger}"
+loglevel = 1
+
+
+[action.transform]
+type = "resultset_to_form"
+key_value_attributes = [
+    ["stateBits", "{@result_set.@i.StateBits}"],
+    ["workMode", "{@result_set.@i.WorkMode}"],
+    ["loopMode", "{@result_set.@i.LoopMode}"],
+    ["process", "{@result_set.@i.Process}"],
+    ["dataTime", "{@result_set.@i.Time|unixtime}"]
+    ]
+param0 = "result_set"
+return = "form"
+logto = "{@@logger}"
+next = "post"
+
+[action.post]
+type = "http_post"
+url = "http://{$host}:1024/d/send/{$cinderella_status_device_id}"
+param0 = "form"
+next = ""
+
+
+

@@ -1,0 +1,22 @@
+
+
+[action.transform]
+type = "resultset_to_form"
+key_value_attributes = [
+    ["gammalong", "{@result_set.@i.gammalong}"],
+    ["gammacps", "{@result_set.@i.gammacps}"],
+    ["emissionlong", "{@result_set.@i.emissionlong}"],
+    ["emissioncps", "{@result_set.@i.emissioncps}"],
+    ["betacps", "{@result_set.@i.betacps}"],
+    ["dataTime", "{@result_set.@i.time|unixtime}"]
+    ]
+param0 = "result_set"
+return = "form"
+logto = "{@@logger}"
+next = "post"
+
+[action.post]
+type = "http_post"
+url = "http://{$host}:1024/d/send/{$bai9125_device_id}"
+param0 = "form"
+next = ""
