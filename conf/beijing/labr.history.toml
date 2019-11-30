@@ -4,7 +4,7 @@
 name = "labr.history"
 
 # 每分钟尝试获取一次历史数据命令
-triggers = ["every-minute 13", "every-minute 43"]
+triggers = ["every-minute 16"]
 require = ["labr.sub.history.toml"]
 
 [vars]
@@ -29,10 +29,10 @@ exit_at = "{@lost_data.status} != 0"
 type = "mysql_exec"
 mysqlconnection="mysqlconnection"
 # TODO: 优化UNIX_TIMESTAMP, 现在用不到Time字段的索引了
-sql = "select * from labr_rec where UNIX_TIMESTAMP(time) in ({@lost_data.data.timePoints|stringify|join});"
+sql = "select * from labr_rec where time in ({@lost_data.data.timePoints|formatTimeArray|join});"
 next = "transform"
 return = "result_set"
-#exit_at = "len({@result_set}) == 0"
+exit_at = "len({@result_set}) == 0"
 
 
 

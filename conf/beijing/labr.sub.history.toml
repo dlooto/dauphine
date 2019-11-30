@@ -31,7 +31,7 @@ next = "get_nuclides"
 [action.get_nuclides]
 type="mysql_exec"
 mysqlconnection="mysqlconnection"
-sql = "select * from labrnuclide_rec where UNIX_TIMESTAMP(time) in ({@lost_data.data.timePoints|stringify|join});"
+sql = "select * from labrnuclide_rec where time in ({@lost_data.data.timePoints|formatTimeArray|join});"
 return = "nuclides_result"
 next="transform2"
 logto="me"
