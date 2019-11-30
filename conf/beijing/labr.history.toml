@@ -18,7 +18,7 @@ path="D:/scada/logs/labr/{$month}"
 # action.main 是一个执行序列的第一个action
 [action.main]
 type = "http_get"
-url = "http://{$host}:1024/d/cmd/fetch/history/{$labr_device_id}"
+url = "http://{$host}:1024/d/cmd/fetch/history/{$labr_device_id}?interval=300"
 return = "lost_data"
 content_type = "json"
 next = "selectlost"
