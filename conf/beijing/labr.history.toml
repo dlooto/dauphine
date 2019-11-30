@@ -5,7 +5,7 @@ name = "labr.history"
 
 # 每分钟尝试获取一次历史数据命令
 triggers = ["every-minute 13", "every-minute 43"]
-require = ["hpic.sub.toml"]
+require = ["labr.sub.history.toml"]
 
 [vars]
 logger = "me"
