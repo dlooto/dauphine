@@ -1,0 +1,70 @@
+
+
+[action.transform]
+type = "resultset_to_form"
+key_value_attributes = [
+    ["energyPosition", "{@result_set.@i.EnergyFromPosition}"],
+    ["nuclideFound", "{@result_set.@i.NuclideFound | from_bit}"],
+    ["highVoltage", "{@result_set.@i.HighVoltage}"],
+    ["temperature", "{@result_set.@i.Temperature}"],
+    ["doserate", "{@result_set.@i.DoseRate}"],
+    ["channelData", "{@result_set.@i.ChannelData}"],
+    ["coefficients", "{@result_set.@i.Coefficients}"],
+    ["startTime","{@result_set.@i.StartTime|unixtime}"],
+    ["endTime", "{@result_set.@i.EndTime|unixtime}"],
+    ["dataTime", "{@result_set.@i.Time|unixtime}"]
+    ]
+    
+param0 = "result_set"
+return = "form"
+logto = "{@@logger}"
+next = "post"
+
+[action.post]
+type = "http_post"
+url = "http://{$host}:1024/d/send/{$labr_device_id}"
+param0 = "form"
+next = "get_nuclides"
+
+
+
+[action.get_nuclides]
+type="mysql_exec"
+mysqlconnection="mysqlconnection"
+sql = "select * from labrnuclide_rec where UNIX_TIMESTAMP(time) in ({@lost_data.data.timePoints|stringify|join});"
+return = "nuclides_result"
+next="transform2"
+logto="me"
+exit_at = "(len({@nuclides_result}) == 0)"
+
+
+
+[action.transform2]
+type="resultset_to_form"
+key_value_attributes = [
+    ["nuclide", "{@nuclides_result.@i.Nuclide}"],
+    ["activity", "{@nuclides_result.@i.Activity}"],
+    ["indication", "{@result_set.@i.Indication}"],
+    ["doserate", "{@result_set.@i.DoseRate}"],
+    ["channel", "{@result_set.@i.Channel}"],
+    ["energy", "{@result_set.@i.Energy}"],
+    ["dataTime", "{@result_set.@i.Time|unixtime}"]
+    ]
+param0 = "nuclides_result"
+return = "form2"
+next = "send_nuclides"
+logto="me"
+
+
+[action.send_nuclides]
+type = "http_post"
+param0 = "form2"
+next = ""
+logto="me"
+url="http://{$host}:1024/d/send/{$labr_nuc_device_id}"
+
+
+
+
+
+
