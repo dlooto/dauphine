@@ -23,7 +23,7 @@ return = "lost_data"
 content_type = "json"
 next = "selectlost"
 logto = "{@@logger}"
-exit_at = "{@lost_data.status} != 0"
+retry_at = "{@lost_data.status} != 0"
 
 [action.selectlost]
 type = "mysql_exec"
