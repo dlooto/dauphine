@@ -42,7 +42,7 @@ exit_at = "(len({@nuclides_result}) == 0)"
 [action.transform2]
 type="resultset_to_form"
 key_value_attributes = [
-    ["nuclide", "{@nuclides_result.@i.Nuclide}"],
+    ["nuclide", "{@nuclides_result.@i.Name}"],
     ["activity", "{@nuclides_result.@i.Activity}"],
     ["indication", "{@result_set.@i.Indication}"],
     ["doserate", "{@result_set.@i.DoseRate}"],
