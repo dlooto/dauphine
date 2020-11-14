@@ -23,7 +23,7 @@ path="D:/scada/logs"
 
 # Global variables!
 [vars]
-host="45.32.113.2"
+host="47.92.125.133"
 print_exception = 1
 cinderella_device_id=87
 cinderella_status_device_id=88
