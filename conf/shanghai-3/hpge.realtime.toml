@@ -92,3 +92,9 @@ param0 = "form2"
 next = ""
 logto="me"
 url="http://{$host}:1024/d/send/{$hpge_nuc_device_id}"
+
+
+
+
+
+

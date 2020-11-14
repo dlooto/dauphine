@@ -14,7 +14,7 @@ key_value_attributes = [
     ["dewpoint", "{@result_set.@i.Dewpoint}"],
     ["dataTime", "{@result_set.@i.Time|unixtime}"]
     ]
-
+    
 param0 = "result_set"
 return = "form"
 logto = "{@@logger}"

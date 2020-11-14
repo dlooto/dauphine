@@ -14,7 +14,7 @@ key_value_attributes = [
     ["endTime", "{@result_set.@i.EndTime|unixtime}"],
     ["dataTime", "{@result_set.@i.Time|unixtime}"]
     ]
-    
+
 param0 = "result_set"
 return = "form"
 logto = "{@@logger}"
@@ -62,9 +62,3 @@ param0 = "form2"
 next = ""
 logto="me"
 url="http://{$host}:1024/d/send/{$labr_nuc_device_id}"
-
-
-
-
-
-
